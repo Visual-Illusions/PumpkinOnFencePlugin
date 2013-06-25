@@ -18,6 +18,8 @@
 package net.visualillusionsent.minecraft.server.mod.canary.plugin.pofp;
 
 import net.canarymod.Canary;
+import net.canarymod.api.GameMode;
+import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.api.inventory.Item;
 import net.canarymod.api.inventory.ItemType;
 import net.canarymod.api.world.blocks.Block;
@@ -61,7 +63,7 @@ public class POFPListener implements PluginListener {
                     }
                     pof.update();
 
-                    //hook.getPlayer().getInventory().decreaseItemStackSize(itemInHand.getId(), 1);
+                    decreaseStack(hook.getPlayer());
                     hook.setCanceled();
                 }
             }
@@ -76,5 +78,15 @@ public class POFPListener implements PluginListener {
             face = 180 - (180 - face);
         }
         return face;
+    }
+
+    private final void decreaseStack(Player player) {
+        if (player.getMode() != GameMode.CREATIVE) {
+            Item held = player.getItemHeld();
+            held.setAmount(held.getAmount() - 1);
+            if (held.getAmount() <= 0) {
+                player.getInventory().setSlot(held.getSlot(), null);
+            }
+        }
     }
 }
