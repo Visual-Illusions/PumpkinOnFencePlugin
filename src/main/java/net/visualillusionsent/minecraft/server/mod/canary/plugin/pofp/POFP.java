@@ -49,6 +49,8 @@ public final class POFP extends Plugin {
 
     @Override
     public final boolean enable() {
+        checkStatus();
+        checkVersion();
         new POFPListener(this);
         new POFPCommand(this);
         return true;
