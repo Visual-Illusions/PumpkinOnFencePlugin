@@ -28,14 +28,20 @@ import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.player.BlockRightClickHook;
 import net.canarymod.plugin.PluginListener;
 
-public class POFPListener implements PluginListener {
+/**
+ * Pumpkin on Fence Plugin Listener
+ * 
+ * @author Jason (darkdiplomat)
+ * @author NiccosSystem
+ */
+public final class POFPListener implements PluginListener {
 
     POFPListener(POFP pofp) {
         Canary.hooks().registerListener(this, pofp);
     }
 
     @HookHandler
-    public void onBlockRightClick(BlockRightClickHook hook) {
+    public final void onBlockRightClick(BlockRightClickHook hook) {
         Block blockClicked = hook.getBlockClicked();
 
         if (blockClicked.getType() == BlockType.Fence || blockClicked.getType() == BlockType.NetherBrickFence) {
@@ -62,7 +68,6 @@ public class POFPListener implements PluginListener {
                         pof.setData((short) 3);
                     }
                     pof.update();
-
                     decreaseStack(hook.getPlayer());
                     hook.setCanceled();
                 }
@@ -72,10 +77,10 @@ public class POFPListener implements PluginListener {
 
     private final int forceOverflow(int face) {
         if (face < -180) {
-            face = -180 - face;
+            face = face + 360;
         }
         else if (face > 180) {
-            face = 180 - (180 - face);
+            face = face - 360;
         }
         return face;
     }

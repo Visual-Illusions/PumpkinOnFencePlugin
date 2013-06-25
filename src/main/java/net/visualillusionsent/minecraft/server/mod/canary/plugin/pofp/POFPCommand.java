@@ -30,6 +30,12 @@ import net.canarymod.commandsys.CommandListener;
 import net.visualillusionsent.utils.StringUtils;
 import net.visualillusionsent.utils.VersionChecker;
 
+/**
+ * Pumpkin on Fence Plugin Command Listener
+ * 
+ * @author Jason (darkdiplomat)
+ * @author NiccosSystem
+ */
 public class POFPCommand implements CommandListener {
 
     private final List<String> about;

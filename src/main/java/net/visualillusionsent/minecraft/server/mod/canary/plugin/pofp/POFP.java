@@ -21,12 +21,17 @@ import java.io.IOException;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
-import net.canarymod.Canary;
 import net.canarymod.plugin.Plugin;
 import net.visualillusionsent.utils.ProgramStatus;
 import net.visualillusionsent.utils.VersionChecker;
 
-public class POFP extends Plugin {
+/**
+ * Pumpkin on Fence Plugin main
+ * 
+ * @author Jason (darkdiplomat)
+ * @author NiccosSystem
+ */
+public final class POFP extends Plugin {
 
     private final VersionChecker vc;
     private float version;
@@ -40,12 +45,10 @@ public class POFP extends Plugin {
     }
 
     @Override
-    public void disable() {
-        Canary.hooks().unregisterPluginListeners(this);
-    }
+    public final void disable() {}
 
     @Override
-    public boolean enable() {
+    public final boolean enable() {
         new POFPListener(this);
         new POFPCommand(this);
         return true;
