@@ -17,6 +17,7 @@
  */
 package net.visualillusionsent.minecraft.server.mod.canary.plugin.pofp;
 
+import net.canarymod.Canary;
 import net.canarymod.api.inventory.Item;
 import net.canarymod.api.inventory.ItemType;
 import net.canarymod.api.world.blocks.Block;
@@ -25,6 +26,10 @@ import net.canarymod.hook.player.BlockRightClickHook;
 import net.canarymod.plugin.PluginListener;
 
 public class POFPListener implements PluginListener {
+
+    POFPListener(POFP pofp) {
+        Canary.hooks().registerListener(this, pofp);
+    }
 
     public void onBlockRightClick(BlockRightClickHook hook) {
         Block blockClicked = hook.getBlockClicked();
