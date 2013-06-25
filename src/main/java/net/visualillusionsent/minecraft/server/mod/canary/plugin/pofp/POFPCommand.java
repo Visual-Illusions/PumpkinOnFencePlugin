@@ -44,7 +44,7 @@ public class POFPCommand implements CommandListener {
         pre.add(Colors.CYAN + "Built: " + Colors.LIGHT_GREEN + pofp.getBuildTime());
         pre.add(Colors.CYAN + "Developers: " + Colors.LIGHT_GREEN + "DarkDiplomat, NiccosSystem");
         pre.add(Colors.CYAN + "Website: " + Colors.LIGHT_GREEN + "http://wiki.visualillusionsent.net/PumpkinOnFencePlugin");
-        pre.add(Colors.CYAN + "Issues: " + Colors.LIGHT_GREEN + "https://github.com/Visual-Illusions/PumpkinOnFencePlugin/issues");
+        pre.add(Colors.CYAN + "Issues: " + Colors.LIGHT_GREEN + "http://git.io/_1J2IA");
 
         // Next line should always remain at the end of the About
         pre.add(center("§aCopyright © 2013 §2Visual §6I§9l§bl§4u§as§2i§5o§en§7s §2Entertainment"));
