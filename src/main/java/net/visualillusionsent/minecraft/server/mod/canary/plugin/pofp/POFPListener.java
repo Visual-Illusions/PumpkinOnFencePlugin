@@ -22,6 +22,7 @@ import net.canarymod.api.inventory.Item;
 import net.canarymod.api.inventory.ItemType;
 import net.canarymod.api.world.blocks.Block;
 import net.canarymod.api.world.blocks.BlockType;
+import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.player.BlockRightClickHook;
 import net.canarymod.plugin.PluginListener;
 
@@ -31,6 +32,7 @@ public class POFPListener implements PluginListener {
         Canary.hooks().registerListener(this, pofp);
     }
 
+    @HookHandler
     public void onBlockRightClick(BlockRightClickHook hook) {
         Block blockClicked = hook.getBlockClicked();
 
@@ -39,24 +41,40 @@ public class POFPListener implements PluginListener {
 
             if (itemInHand.getType() == ItemType.Pumpkin || itemInHand.getType() == ItemType.JackOLantern) {
                 Block pof = hook.getPlayer().getWorld().getBlockAt(blockClicked.getX(), blockClicked.getY() + 1, blockClicked.getZ());
-                pof.setType(BlockType.fromId(itemInHand.getId()));
+                if (pof.isAir()) {
+                    pof.setType(BlockType.fromId(itemInHand.getId()));
+                    pof.update();
 
-                int facing = (int) Math.floor(hook.getPlayer().getRotation());
-                if (facing >= 135 && facing <= 180 || facing <= 135 && facing >= -180) {//Player is facing North
-                    pof.setData((short) 1);
-                }
-                else if (facing >= -135 && facing <= -45) { //Player is facing East
-                    pof.setData((short) 2);
-                }
-                else if (facing >= -45 && facing <= 45) { //Player is facing South
-                    pof.setData((short) 3);
-                }
-                else if (facing >= 45 && facing <= 135) { //Player is facing West
-                    pof.setData((short) 0);
-                }
+                    int facing = forceOverflow((int) Math.floor(hook.getPlayer().getRotation()));
+                    //0x0: Facing south | 0x1: Facing west | 0x2: Facing north | 0x3: Facing east | 0x4: No face
+                    if (facing >= 135 && facing <= 180 || facing <= -135 && facing >= -180) {//Player is facing North
+                        pof.setData((short) 0);
+                    }
+                    else if (facing >= -135 && facing <= -45) { //Player is facing East
+                        pof.setData((short) 1);
+                    }
+                    else if (facing >= -45 && facing <= 45) { //Player is facing South
+                        pof.setData((short) 2);
+                    }
+                    else if (facing >= 45 && facing <= 135) { //Player is facing West
+                        pof.setData((short) 3);
+                    }
+                    pof.update();
 
-                hook.getPlayer().getInventory().decreaseItemStackSize(itemInHand.getId(), 1);
+                    //hook.getPlayer().getInventory().decreaseItemStackSize(itemInHand.getId(), 1);
+                    hook.setCanceled();
+                }
             }
         }
+    }
+
+    private final int forceOverflow(int face) {
+        if (face < -180) {
+            face = -180 - face;
+        }
+        else if (face > 180) {
+            face = 180 - (180 - face);
+        }
+        return face;
     }
 }

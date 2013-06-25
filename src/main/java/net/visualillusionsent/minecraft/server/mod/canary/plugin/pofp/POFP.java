@@ -48,7 +48,7 @@ public class POFP extends Plugin {
     public boolean enable() {
         new POFPListener(this);
         new POFPCommand(this);
-        return false;
+        return true;
     }
 
     final Manifest getManifest() throws Exception {
