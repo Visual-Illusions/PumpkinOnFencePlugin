@@ -1,0 +1,5 @@
+main-class = net.visualillusionsent.minecraft.server.mod.canary.plugin.pofp.POFP
+isLibrary = false
+name = Pumpkin on Fence Plugin
+author = Visual Illusions Entertainment
+version = 0.1
