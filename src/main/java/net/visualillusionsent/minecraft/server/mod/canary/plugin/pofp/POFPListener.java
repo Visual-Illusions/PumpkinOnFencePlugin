@@ -45,7 +45,7 @@ public final class POFPListener implements PluginListener {
         Block blockClicked = hook.getBlockClicked();
 
         if (blockClicked.getType() == BlockType.Fence || blockClicked.getType() == BlockType.NetherBrickFence) {
-            Item itemInHand = hook.getPlayer().getItemInHand();
+            Item itemInHand = hook.getPlayer().getItemHeld();
 
             if (itemInHand.getType() == ItemType.Pumpkin || itemInHand.getType() == ItemType.JackOLantern) {
                 Block pof = hook.getPlayer().getWorld().getBlockAt(blockClicked.getX(), blockClicked.getY() + 1, blockClicked.getZ());
