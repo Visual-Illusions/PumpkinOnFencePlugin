@@ -5,3 +5,5 @@
 /.project
 /.settings
 /release.properties
+*.iml
+/.idea
