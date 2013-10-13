@@ -18,6 +18,7 @@
 package net.visualillusionsent.pofp.canary;
 
 import net.canarymod.commandsys.CommandDependencyException;
+import net.visualillusionsent.minecraft.plugin.canary.VisualIllusionsCanaryPlugin;
 
 /**
  * Pumpkin on Fence Plugin main
