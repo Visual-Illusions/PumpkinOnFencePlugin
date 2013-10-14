@@ -7,7 +7,7 @@
     <name>PumpkinOnFencePlugin</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <program.status>BETA</program.status>
+        <program.status>STABLE</program.status>
         <canary.main.class>${project.groupId}.${project.artifactId}.canary.PumpkinOnFencePlugin</canary.main.class>
         <vimcplugin.version>1.0u1</vimcplugin.version>
         <build.number>0-dev</build.number>
@@ -269,11 +269,11 @@
                                 <!-- don't need Bukkit or Spout at this time
                                 <relocation>
                                     <pattern>net.visualillusionsent.minecraft.plugin.bukkit</pattern>
-                                    <shadedPattern>net.visualillusionsent.${artifactId}.bukkit</shadedPattern>
+                                    <shadedPattern>${project.groupId}.${project.artifactId}.bukkit</shadedPattern>
                                 </relocation>
                                 <relocation>
                                     <pattern>net.visualillusionsent.minecraft.plugin.spout</pattern>
-                                    <shadedPattern>net.visualillusionsent.${artifactId}.spout</shadedPattern>
+                                    <shadedPattern>${project.groupId}.${project.artifactId}.spout</shadedPattern>
                                 </relocation>
                                 -->
                             </relocations>
